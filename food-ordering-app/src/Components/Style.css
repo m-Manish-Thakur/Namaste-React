@@ -1,0 +1,116 @@
+header{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 5vw;
+    background-color: aliceblue;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+header img{
+    height: 40px;
+}
+header nav ul{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    list-style: none;
+}
+header nav ul li{
+    padding: 7px 25px;
+    font-weight: 500;
+    color: rgb(71, 71, 76);
+    cursor: pointer;
+}
+header nav ul button{
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: white;
+    background-color: #FE344A;
+    border: none;
+    border-radius: 25px;
+    padding: 9px 20px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* ##########################   Home    ########################### */
+#home{
+    padding: 50px 5vw;
+}
+#home button{
+    border: none;
+    border-radius: 5px;
+    padding: 10px 25px;
+    color: aliceblue;
+    background-color: green;
+    font-size: 16px;
+    cursor: pointer;
+}
+#foodList{
+    align-items: flex-start;
+    justify-content: space-between;
+    row-gap: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+/* ############################   Resturant Card   ###########################3 */
+
+#resCard{
+    width: 250px;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: rgba(142, 142, 142, 0.324) 0px 3px 30px;
+}
+#resCard:hover{
+    transform: scale(1.05, 1.05);
+    cursor: pointer;
+}
+#resCard img{
+    width: 100%;
+    border-radius: 5px;
+}
+#resCard .title{
+    font-family: 'poppins';
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 10px;
+}
+#resCard .category{
+    color: rgb(52, 52, 60);
+    line-height: 35px;
+}
+#resCard .rating{
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: rgb(89, 89, 94);
+}
+#resCard .price{
+    font-size: 18px;
+    color: orangered;
+    font-weight: 700;
+    font-family: 'Roboto';
+}
+#resCard button{
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-align: center;
+    color: green;
+    border: 1px solid green;
+    background-color: white;
+    margin-top: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+#resCard button:hover{
+    background-color: green;
+    color: aliceblue;
+    cursor: pointer;
+}
