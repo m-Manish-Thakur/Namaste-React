@@ -3,18 +3,36 @@ import ResCard from "./ResCard";
 import data from "../Utils/data";
 
 const Home = () => {
-
   const [Data, setData] = useState(data);
+  const [filteredData, setFilteredData] = useState(Data);
+  const [search, setSearch] = useState("");
 
-  
+  const handleFilter = (e) => {
+    const filterItems = Data.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredData(filterItems);
+    console.log(filterItems);
+  };
 
   return (
     <>
       <div id="home">
-        <button className="filterBtn">4+ Rating Food</button>
-        <button className="filterBtn" style={{marginLeft:'15px'}}>3+ Rating Food</button>
+        <div class="mb-3 d-flex">
+          <input
+            type="search"
+            className="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Search Food"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              handleFilter();
+            }}
+          />
+        </div>
         <div id="foodList">
-          {Data.map((item) => (
+          {filteredData.map((item) => (
             <ResCard item={item} key={item.id} />
           ))}
         </div>
