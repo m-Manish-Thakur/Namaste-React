@@ -7,13 +7,13 @@ const Header = () => {
   return (
     <>
       <header>
-        <img src={LOGO_URL} alt="" />
+        <img src="https://w7.pngwing.com/pngs/486/458/png-transparent-web-development-e-commerce-logo-electronic-business-ecommerce.png" alt="" />
         <nav>
           <ul>
             <Link to='/'><li>Home</li></Link>
             <Link to='/about'><li>About</li></Link>
             <Link to='/contact'><li>Contact</li></Link>
-            <Link to='/'><li>Explore</li></Link>
+            <Link to='/resturantMenu'><li>Explore</li></Link>
           <button type="button" className="btn btn-success">Cart</button> 
           </ul>
         </nav>

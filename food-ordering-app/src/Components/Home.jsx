@@ -1,24 +1,33 @@
-import React, { useState } from "react";
-import ResCard from "./ResCard";
-import data from "../Utils/data";
+import React, { useEffect, useState } from "react";
+import ProductCard from "./ProductCard";
 
 const Home = () => {
-  const [Data, setData] = useState(data);
-  const [filteredData, setFilteredData] = useState(Data);
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState(null);
   const [search, setSearch] = useState("");
 
-  const handleFilter = (e) => {
-    const filterItems = Data.filter((item) =>
+  const handleFilter = () => {
+    const filterItems = data.filter((item) =>
       item.title.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredData(filterItems);
-    console.log(filterItems);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const res = await fetch(`https://dummyjson.com/products?limit=100`);
+    const newData = await res.json();
+    setData(newData.products);
+    setFilteredData(newData.products);
   };
 
   return (
     <>
       <div id="home">
-        <div class="mb-3 d-flex">
+        <div className="mb-3 d-flex">
           <input
             type="search"
             className="form-control"
@@ -32,9 +41,16 @@ const Home = () => {
           />
         </div>
         <div id="foodList">
-          {filteredData.map((item) => (
-            <ResCard item={item} key={item.id} />
-          ))}
+          {
+            filteredData ? (
+              filteredData.map((item) => (
+                <ProductCard item={item} key={item.id} />
+              ))
+            ): 
+            (
+              <h1>Loading...</h1>
+            )
+          }
         </div>
       </div>
     </>

@@ -2,11 +2,12 @@ import React from 'react'
 import './Style.css'
 
 const ResCard = ({item}) => {
+
   return (
     <>
         <div id="resCard">
-            <img src={item.image} alt='' />
-            <p className='title'>{item.title.substring(0,20)}..</p>
+            <img src={item.thumbnail} alt='' />
+            <p className='title'>{item.title}</p>
             <p className='category'>{item.category}</p>
             <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
                 <p className='price'>₹ {item.price}</p>
