@@ -1,1 +1,2 @@
-export const LOGO_URL = "https://upload.wikimedia.org/wikipedia/commons/0/09/Zomato_company_logo.png";
+export const FETCH_URL =
+  "https://www.swiggy.com/mapi/homepage/getCards?lat=27.8973944&lng=78.0880129";

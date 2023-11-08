@@ -1,56 +1,43 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
-
+import Rescard from "./ResCard";
+import { FETCH_URL } from "../Utils/Constants";
 const Home = () => {
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState(null);
-  const [search, setSearch] = useState("");
-
-  const handleFilter = () => {
-    const filterItems = data.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredData(filterItems);
-  };
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (!data) {
+      fetchData();
+    }
+  }, [data]);
 
   const fetchData = async () => {
-    const res = await fetch(`https://dummyjson.com/products?limit=100`);
-    const newData = await res.json();
-    setData(newData.products);
-    setFilteredData(newData.products);
+    try {
+      const res = await fetch(FETCH_URL);
+      if (res.ok) {
+        const newData = await res.json();
+        console.log(newData);
+        setData(
+          newData?.data?.success?.cards[4]?.gridWidget?.gridElements
+            ?.infoWithStyle.restaurants
+        );
+      } else {
+        console.error("Failed to fetch data. Status:", res.status);
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching data:", error);
+    }
   };
 
   return (
     <>
       <div id="home">
-        <div className="mb-3 d-flex">
-          <input
-            type="search"
-            className="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Search Food"
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              handleFilter();
-            }}
-          />
-        </div>
+        <h2>Restaurants with online food delivery in Aligarh</h2>
         <div id="foodList">
-          {
-            filteredData ? (
-              filteredData.map((item) => (
-                <ProductCard item={item} key={item.id} />
-              ))
-            ): 
-            (
-              <h1>Loading...</h1>
-            )
-          }
+          {data ? (
+            data.map((item) => <Rescard item={item} key={item?.info?.id} />)
+          ) : (
+            <h1>Loading...</h1>
+          )}
         </div>
       </div>
     </>
