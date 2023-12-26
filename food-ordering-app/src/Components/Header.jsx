@@ -2,8 +2,12 @@ import React from "react";
 import { LOGO_URL } from "../Utils/Constants";
 import "./Style.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import store from "../Utils/appStore";
 
 const Header = () => {
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
   return (
     <>
       <header>
@@ -22,11 +26,10 @@ const Header = () => {
             <Link to="/contact">
               <li>Contact</li>
             </Link>
-            <Link to="/resturantMenu">
-              <li>Explore</li>
-            </Link>
-            <button type="button" className="bg-red-500">
-              Cart
+            <button type="button" className="bg-slate-300 rounded-md">
+              <Link to="/cart">
+                <li className="font-bold">Cart-({cartItems.length})</li>
+              </Link>
             </button>
           </ul>
         </nav>

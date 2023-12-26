@@ -1,6 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Utils/cartSlice";
 
 const RestaurantList = ({ data }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItems = (res) => {
+    dispatch(addItem(res));
+  };
+
   return (
     <>
       <div>
@@ -9,13 +17,9 @@ const RestaurantList = ({ data }) => {
             <>
               <div className="flex justify-between items-center py-4 border-b-2 border-dashed">
                 <div className="pr-5">
-                  <h1 className="text-base font-medium text-gray-800">
-                    {res?.card?.info?.name}
-                  </h1>
+                  <h1 className="text-base font-medium text-gray-800">{res?.card?.info?.name}</h1>
                   <p>₹{res?.card?.info?.price / 100}</p>
-                  <p className="text-xs text-gray-500">
-                    {res?.card?.info?.description}
-                  </p>
+                  <p className="text-xs text-gray-500">{res?.card?.info?.description}</p>
                 </div>
                 <div className="relative" style={{ width: "120px" }}>
                   <img
@@ -23,7 +27,10 @@ const RestaurantList = ({ data }) => {
                     alt=""
                     style={{ maxWidth: "120px", borderRadius: "10px" }}
                   />
-                  <button className="absolute bottom-0 bg-black rounded-md text-white p-1 ml-9">
+                  <button
+                    className="absolute bottom-0 bg-black rounded-md text-white p-1 ml-9"
+                    onClick={() => handleAddItems(res)}
+                  >
                     Add+
                   </button>
                 </div>
